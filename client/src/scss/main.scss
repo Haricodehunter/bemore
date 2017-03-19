@@ -1,0 +1,145 @@
+/*
+inspired by:
+https://github.com/minamarkham/sassy-starter/
+https://github.com/kachunchau/smacss-boilerplate
+https://github.com/davidrapson/scss-toolkit
+*/
+
+@import 'settings', 'mixins', 'base', 'helpers', 'modules/island','modules/horizontal-list', 'modules/buttons', 'layouts/page', 'states';
+
+
+.switch {
+  position: relative;
+  margin: 20px auto;
+      height: 37px;
+    width: 200px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.switch-label {
+      position: relative;
+    z-index: 2;
+    float: left;
+    width: 50%;
+    line-height: 34px;
+    font-size: 17px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+}
+form {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+    background: #f9f9f9;
+    padding: 30px;
+}
+.switch-label:active {
+  font-weight: bold;
+}
+
+.switch-label-off {
+  padding-left: 2px;
+}
+
+.switch-label-on {
+  padding-right: 2px;
+}
+
+/*
+  Note: using adjacent or general sibling selectors 
+  combined with pseudo classes doesn't work in Safari 
+  5.0 and Chrome 12.
+  See this article for more info and a potential fix: 
+  http://css-tricks.com/webkit-sibling-bug/
+*/
+
+.switch-input {
+  display: none;
+}
+
+.switch-input:checked + .switch-label {
+  font-weight: bold;
+  color:$white;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+  -webkit-transition: 0.15s ease-out;
+  -moz-transition: 0.15s ease-out;
+  -o-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+}
+
+.switch-input:checked + .switch-label-on ~ .switch-selection {
+  /* Note: left: 50% doesn't transition in WebKit */
+  left: 50%;
+}
+
+.switch-selection {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  left: 2px;
+    width: 50%;
+    height: 35px;
+  background: #65bd63;
+  border-radius: 3px;
+  background-image: -webkit-linear-gradient(top, #9dd993, #65bd63);
+  background-image: -moz-linear-gradient(top, #9dd993, #65bd63);
+  background-image: -o-linear-gradient(top, #9dd993, #65bd63);
+  background-image: linear-gradient(to bottom, #9dd993, #65bd63);
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: left 0.15s ease-out;
+  -moz-transition: left 0.15s ease-out;
+  -o-transition: left 0.15s ease-out;
+  transition: left 0.15s ease-out;
+}
+
+.switch-blue .switch-selection {
+  background: #3aa2d0;
+  background-image: -webkit-linear-gradient(top, #4fc9ee, #3aa2d0);
+  background-image: -moz-linear-gradient(top, #4fc9ee, #3aa2d0);
+  background-image: -o-linear-gradient(top, #4fc9ee, #3aa2d0);
+  background-image: linear-gradient(to bottom, #4fc9ee, #3aa2d0);
+}
+
+.switch-yellow .switch-selection {
+  background: #c4bb61;
+  background-image: -webkit-linear-gradient(top, #e0dd94, #c4bb61);
+  background-image: -moz-linear-gradient(top, #e0dd94, #c4bb61);
+  background-image: -o-linear-gradient(top, #e0dd94, #c4bb61);
+  background-image: linear-gradient(to bottom, #e0dd94, #c4bb61);
+}
+.form-group{
+  
+}
+.submitbtn{
+  margin:0 auto;
+  text-align: center;
+}
+.list{
+    width: 60%;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    margin: 12px auto;
+}
+.list li{
+  list-style:none;
+  line-height: 1.4em;
+  font-size: 1.6em;
+}
+.list li i{
+   color: #5cb85c;
+   padding: 0 7px;
+}
+.bg-danger{
+  padding: 7px;
+  border:1px solid red;
+}

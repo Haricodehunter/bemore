@@ -1,0 +1,66 @@
+<div class="pure-u-md-24-24">
+    <div class="container">
+        <form name="tripsortform" novalidate  ng-submit="searchCall(tripsort)" >
+            <div class="form-group">
+                <select class="form-control" name="departure" ng-model="tripsort.selectedDeparture" ng-options="trip.departure for trip in tripdata.deals | unique:'departure'  " ng-required="true">
+                   <option value="" label="From">From</option>
+                </select>
+                  <div ng-messages="tripsortform.departure.$error" ng-if="tripsortform.departure.$touched "><div ng-message="required"><p class="bg-danger">field is required</p></div></div>
+
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="arrival" ng-model="tripsort.selectedArrival" ng-options="trip.arrival for trip in tripdata.deals | unique:'arrival'" aria-required="" ng-required="true">
+                   <option value="" label="To">To</option>
+                </select>
+                 <div ng-messages="tripsortform.arrival.$error" ng-if="tripsortform.arrival.$touched "><div ng-message="required"><p class="bg-primary"><p class="bg-danger">field is required</p></div></div>
+
+                <!--<p class="" ng-show="tripsort.selectedDeparture == tripsort.selectedArrival" >Arrival city is not same as Departure</p>-->
+            </div> 
+               <div class="switch">
+               
+                  <input type="radio" ng-model="tripsort.selectedradio" class="switch-input" name="view" value="cheapest"  ng-required="true" id="cheapest" checked>
+                    <label for="cheapest" class="switch-label switch-label-off">Cheapest</label>
+                    <input type="radio" ng-model="tripsort.selectedradio" class="switch-input" name="view" ng-required="!selectedradio"  value="fastest" id="fastest">
+                    <label for="fastest" class="switch-label switch-label-on">Fastest</label>
+                    <span class="switch-selection"></span>
+                                     <div ng-messages="tripsortform.selectedradio.$error" ng-if="tripsortform.selectedradio.$touched "><div ng-message="required"><p class="bg-danger">field is required</p></div></div>
+            </div>
+   
+            <div class="form-group submitbtn">
+                <button type="submit" ng-disabled="!tripsortform.$valid" class="btn btn-success" ><i class="glyphicon glyphicon-search"></i>&nbsp;Search</button>
+
+            </div>
+            </form>
+           
+
+            <div class="searchresult">
+                <div class="listdata">
+                   <div class="list row" ng-repeat="result in searchResult">
+                 
+                       <div class="col-md-4 col-sm-12 col-xs-12 img">
+                                 <img src="assets/images/bus.png" alt="Bus" width="150" ng-show="result.transport=='bus'"/>
+                                  <img src="assets/images/car.png" alt="car" width="150" ng-show="result.transport=='car'"/>
+                                   <img src="assets/images/train.png" alt="train" width="150" ng-show="result.transport=='train'"/>
+                       </div>   
+                        <div class="col-md-8 col-sm-12 col-xs-12">
+                            <ul>
+                                <li><i class="glyphicon glyphicon-plane"></i>{{result.departure}} to {{result.arrival}}</li> 
+                                <li><i class="glyphicon glyphicon-euro"></i>{{result.cost}}</li>
+                                <li><i class="glyphicon glyphicon-tag"></i>{{result.discount}}</li>
+                                <li><i class="glyphicon glyphicon-time"></i>{{result.duration.h}}:{{result.duration.m}}</li>
+
+                            </ul>
+                        </div>
+                    
+                        
+                    </div>
+                      
+                </div>
+            </div>
+        
+        <div class="listerror " style="width:54%; margin:10px auto; "  ng-show="!searchResult.length">
+                           <p class="bg-danger">No matches found try different destinations</p>
+</div>
+    </div>
+</div>
+
